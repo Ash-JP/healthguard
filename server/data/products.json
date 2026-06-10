@@ -1,0 +1,50 @@
+[
+  {
+    "id": "HG-001",
+    "name": "Paracetamol 500mg Tablets",
+    "category": "Analgesic & Antipyretic",
+    "description": "Standard pain reliever and fever reducer.",
+    "packaging": "Blister 10x10 Tablets",
+    "status": "In Stock"
+  },
+  {
+    "id": "HG-002",
+    "name": "Amoxicillin 500mg Capsules",
+    "category": "Antibiotics",
+    "description": "Broad-spectrum penicillin antibiotic for bacterial infections.",
+    "packaging": "Blister 10x10 Capsules",
+    "status": "In Stock"
+  },
+  {
+    "id": "HG-003",
+    "name": "Metformin HCl 850mg Tablets",
+    "category": "Antidiabetics",
+    "description": "Oral antihyperglycemic drug for managing Type 2 diabetes.",
+    "packaging": "Bottle of 100 Tablets",
+    "status": "In Stock"
+  },
+  {
+    "id": "HG-004",
+    "name": "Atorvastatin 20mg Tablets",
+    "category": "Cardiovascular",
+    "description": "Statin medication used to prevent cardiovascular disease and lower lipids.",
+    "packaging": "Blister 3x10 Tablets",
+    "status": "Made to Order"
+  },
+  {
+    "id": "HG-005",
+    "name": "Lisinopril 10mg Tablets",
+    "category": "Antihypertensives",
+    "description": "ACE inhibitor used to treat high blood pressure and heart failure.",
+    "packaging": "Blister 10x10 Tablets",
+    "status": "In Stock"
+  },
+  {
+    "id": "HG-006",
+    "name": "Ibuprofen 400mg Tablets",
+    "category": "Analgesic & NSAID",
+    "description": "Nonsteroidal anti-inflammatory drug used for treating pain, fever, and inflammation.",
+    "packaging": "Blister 10x10 Tablets",
+    "status": "In Stock"
+  }
+]
