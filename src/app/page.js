@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="section bg-secondary" style={{ backgroundColor: 'var(--secondary)', padding: '8rem 0' }}>
+      <section className="section bg-secondary" style={{ backgroundColor: 'var(--secondary)', padding: '4rem 0' }}>
         <div className="container flex flex-col items-center justify-center text-center">
           <FadeIn>
             <h1 className="h1">Premium Medical Supplies for Top-Tier Facilities</h1>
