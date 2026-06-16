@@ -10,10 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
-        <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-          <div className="container flex h-16 items-center justify-between">
-            <Link href="/" className="font-bold text-2xl text-primary tracking-tight">
+      <body className="min-h-screen flex flex-col bg-background selection:bg-accent/20">
+        <header className="sticky top-0 z-50 w-full border-b border-white/20 bg-white/60 dark:bg-black/40 backdrop-blur-xl shadow-sm supports-[backdrop-filter]:bg-white/40">
+          <div className="container flex h-20 items-center justify-between">
+            <Link href="/" className="font-bold text-2xl text-primary tracking-tight flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-xl shadow-md">+</div>
               Healthguard
             </Link>
             <nav className="hidden md:flex gap-6 text-sm font-medium">
