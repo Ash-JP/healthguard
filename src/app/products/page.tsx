@@ -19,7 +19,7 @@ export default async function Products() {
   try {
     products = await getProducts();
   } catch (err) {
-    error = err.message;
+    error = (err as Error).message;
   }
 
   return (
@@ -44,7 +44,7 @@ export default async function Products() {
 
       {!error && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-          {products.map((product) => (
+          {products.map((product: any) => (
             <div 
               key={product.id} 
               style={{ 

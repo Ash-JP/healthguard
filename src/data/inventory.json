@@ -36,27 +36,70 @@
   "products": [
     {
       "id": "cssd-01",
+      "slug": "steam-sterilizer-pro-500",
       "departmentId": "cssd",
       "name": "Steam Sterilizer Pro 500",
       "description": "High-capacity steam sterilizer ensuring 99.999% microbial eradication. Fast cycle times and energy efficient.",
-      "image": "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=600"
+      "image": "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=600",
+      "workflowStage": "Sterilization"
     },
     {
       "id": "cssd-02",
+      "slug": "ultrasonic-washer-u-200",
       "departmentId": "cssd",
       "name": "Ultrasonic Washer U-200",
       "description": "Deep cleaning for intricate surgical instruments using multi-frequency ultrasonic waves.",
-      "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=600"
+      "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=600",
+      "workflowStage": "Cleaning"
     },
     {
       "id": "cssd-03",
+      "slug": "automated-endoscope-reprocessor",
       "departmentId": "cssd",
       "name": "Automated Endoscope Reprocessor",
       "description": "Complete workflow automation for endoscope cleaning and high-level disinfection.",
-      "image": "https://images.unsplash.com/photo-1583947581924-860bda6a5d4a?auto=format&fit=crop&q=80&w=600"
+      "image": "https://images.unsplash.com/photo-1583947581924-860bda6a5d4a?auto=format&fit=crop&q=80&w=600",
+      "workflowStage": "Disinfection"
+    },
+    {
+      "id": "cssd-04",
+      "slug": "rotary-heat-sealer",
+      "departmentId": "cssd",
+      "name": "Rotary Heat Sealer",
+      "description": "Medical grade rotary sealing machine for sterilization pouches with validatable parameters.",
+      "image": "https://images.unsplash.com/photo-1581595220887-b9c2117565c4?auto=format&fit=crop&q=80&w=600",
+      "workflowStage": "Packing"
+    },
+    {
+      "id": "cssd-05",
+      "slug": "plasma-sterilizer-200x",
+      "departmentId": "cssd",
+      "name": "Plasma Sterilizer 200X",
+      "description": "Low-temperature hydrogen peroxide plasma sterilizer, perfect for heat-sensitive instruments.",
+      "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=600",
+      "workflowStage": "Sterilization"
+    },
+    {
+      "id": "cssd-06",
+      "slug": "sterile-storage-cabinet",
+      "departmentId": "cssd",
+      "name": "Sterile Storage Cabinet",
+      "description": "Climate-controlled, HEPA-filtered cabinet to maintain absolute sterility of packed instruments.",
+      "image": "https://images.unsplash.com/photo-1628177142898-93e46e4624d4?auto=format&fit=crop&q=80&w=600",
+      "workflowStage": "Storage"
+    },
+    {
+      "id": "cssd-07",
+      "slug": "instrument-sorting-workstation",
+      "departmentId": "cssd",
+      "name": "Instrument Sorting Workstation",
+      "description": "Ergonomic illuminated workstation designed for the safe receiving and sorting of soiled instruments.",
+      "image": "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80&w=600",
+      "workflowStage": "Receiving"
     },
     {
       "id": "endo-01",
+      "slug": "hd-gastroscope",
       "departmentId": "endoscopy",
       "name": "HD Gastroscope",
       "description": "High-definition optical gastroscope with enhanced maneuverability.",
@@ -64,6 +107,7 @@
     },
     {
       "id": "radio-01",
+      "slug": "digital-x-ray-system",
       "departmentId": "radiology",
       "name": "Digital X-Ray System",
       "description": "Low-dose digital X-ray machine with instant high-resolution image processing.",

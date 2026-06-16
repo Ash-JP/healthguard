@@ -1,216 +1,88 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  /* Default placeholder theme - to be replaced once palette is selected */
-  --background: #ffffff;
-  --foreground: #0f172a;
-  
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --primary-hover: #1d4ed8;
-  
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --secondary-hover: #e2e8f0;
-  
-  --accent: #38bdf8;
-  --accent-foreground: #ffffff;
-  
-  --muted: #f8fafc;
-  --muted-foreground: #64748b;
-  
-  --border: #e2e8f0;
-  --radius: 0.5rem;
-  
-  --success: #10b981;
-  --error: #ef4444;
+@layer base {
+  :root {
+    --background: 210 40% 98%; /* Very subtle cool gray/blue */
+    --foreground: 222.2 47.4% 11.2%; /* Deep Navy */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --primary: 222.2 47.4% 11.2%; /* Deep Navy Blue */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 214.3 31.8% 91.4%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 214.3 31.8% 91.4%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 173 80% 40%; /* Medical Teal */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 173 80% 40%;
+
+    --radius: 0.75rem; /* Modern rounded corners */
+  }
+
+  .dark {
+    --background: 222.2 47.4% 11.2%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 47.4% 11.2%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 47.4% 11.2%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 173 80% 40%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 173 80% 40%;
+  }
 }
 
-/* Base reset & typography */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    /* Subtle mesh gradient overlay on body */
+    background-image: radial-gradient(at 0% 0%, hsla(210,40%,98%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(173,80%,40%,0.05) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(222,47%,11%,0.05) 0, transparent 50%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background-color: hsl(var(--accent) / 0.2);
+    color: inherit;
+  }
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background);
-  color: var(--foreground);
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-/* Typography Utilities */
-.h1 { font-size: 3rem; margin-bottom: 1rem; }
-.h2 { font-size: 2.25rem; margin-bottom: 1rem; }
-.h3 { font-size: 1.875rem; margin-bottom: 0.75rem; }
-.text-lead { font-size: 1.25rem; color: var(--muted-foreground); margin-bottom: 1.5rem; }
-.text-muted { color: var(--muted-foreground); }
-
-/* Layout Utilities */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-.section {
-  padding: 5rem 0;
-}
-
-.grid {
-  display: grid;
-  gap: 2rem;
-}
-
-.grid-cols-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-.grid-cols-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-.grid-cols-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-
-/* Utility Classes */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.gap-2 { gap: 0.5rem; }
-.gap-4 { gap: 1rem; }
-.gap-8 { gap: 2rem; }
-
-.mt-2 { margin-top: 0.5rem; }
-.mt-4 { margin-top: 1rem; }
-.mt-8 { margin-top: 2rem; }
-.mb-4 { margin-bottom: 1rem; }
-
-/* Components */
-.main-content {
-  flex: 1;
-}
-
-.card {
-  background: var(--background);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-.card-content {
-  padding: 1.5rem;
-}
-
-/* Badges */
-.badge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  border-radius: 999px;
-  background: var(--secondary);
-  color: var(--secondary-foreground);
-}
-
-.badge.active {
-  background: var(--primary);
-  color: var(--primary-foreground);
-}
-
-.badge.inactive {
-  background: var(--muted);
-  color: var(--muted-foreground);
-}
-
-/* Form Styles */
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.form-input, .form-textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--background);
-  color: var(--foreground);
-  transition: border-color 0.2s;
-  font-family: inherit;
-}
-
-.form-input:focus, .form-textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
-}
-
-/* Spinner */
-.spinner {
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 2px solid rgba(255,255,255,0.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Navbar Styles */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 0;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary);
-  letter-spacing: -0.02em;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.nav-links a {
-  font-weight: 500;
-  color: var(--foreground);
-  transition: color 0.2s ease;
-}
-
-.nav-links a:hover {
-  color: var(--primary);
+/* Custom Ecosystem Network Utilities */
+.glass-card {
+  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
 }

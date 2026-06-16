@@ -1,6 +1,6 @@
 'use server';
 
-export async function sendEmailAction(prevState, formData) {
+export async function sendEmailAction(formData: FormData) {
   // Simulate network delay
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
