@@ -64,29 +64,61 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* Interactive Role Selection */}
-      <section id="ecosystem" className="container py-16">
-        <InteractiveRoleSelector onSelectRole={setActiveRole} />
-        
-        {/* The Node Graph Ecosystem */}
+      {/* Radical Interactive Ecosystem */}
+      <section id="ecosystem" className="py-16 relative overflow-hidden bg-secondary/20">
         <motion.div 
-          className="mt-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          className="container relative z-10 text-center mb-8 lg:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold text-primary">Hospital Supply Network</h2>
-            <p className="text-muted-foreground">Select a role above to highlight relevant departments</p>
+          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-primary mb-4">Ecosystem Supply Flow</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Discover how critical medical supplies move through our hospital network based on your specific role.
+          </p>
+        </motion.div>
+
+        {/* Desktop View: Full Width Graph with Dock Below */}
+        <motion.div 
+          className="hidden lg:flex flex-col items-center gap-10 relative w-full max-w-[1400px] mx-auto px-6"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="w-full h-[600px] relative">
+            <HospitalNetworkNode activeRole={activeRole!} />
           </div>
-          <HospitalNetworkNode activeRole={activeRole!} />
+          
+          {/* Glassmorphism Dock */}
+          <div className="z-50 w-full flex justify-center">
+            <InteractiveRoleSelector onSelectRole={setActiveRole} />
+          </div>
+        </motion.div>
+
+        {/* Mobile View: Vertical Accordion */}
+        <motion.div 
+          className="block lg:hidden container"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <InteractiveRoleSelector onSelectRole={setActiveRole} />
         </motion.div>
       </section>
 
       {/* Featured Products */}
       <section className="bg-secondary/50 py-20">
         <div className="container">
-          <div className="flex justify-between items-end mb-10">
+          <motion.div 
+            className="flex justify-between items-end mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+          >
             <div>
               <h2 className="text-3xl font-bold text-primary mb-2">Featured Solutions</h2>
               <p className="text-muted-foreground">Industry-leading equipment across all departments.</p>
@@ -94,7 +126,7 @@ export default function HomeContent() {
             <Button variant="outline" asChild>
               <Link href="/departments">View All</Link>
             </Button>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product, index) => (
@@ -137,7 +169,15 @@ export default function HomeContent() {
 
       {/* Why Choose Us */}
       <section className="container py-24">
-        <h2 className="text-3xl font-bold text-center text-primary mb-12">Enterprise Standards</h2>
+        <motion.h2 
+          className="text-3xl font-bold text-center text-primary mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+        >
+          Enterprise Standards
+        </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { icon: ShieldCheck, title: "Quality Assurance", desc: "ISO and CE certified medical solutions." },
