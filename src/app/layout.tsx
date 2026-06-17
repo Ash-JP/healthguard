@@ -1,8 +1,20 @@
 import './globals.css';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { Inter, Playfair_Display } from 'next/font/google';
 
 import type { Metadata } from 'next';
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+});
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://healthguard-ecosystem.com';
 
@@ -43,7 +55,8 @@ const organizationSchema = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col bg-background selection:bg-accent/20">
+      <body className={`${inter.variable} ${playfair.variable} min-h-screen flex flex-col bg-background selection:bg-accent/20`}>
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

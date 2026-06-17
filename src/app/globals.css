@@ -4,35 +4,41 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%; /* Very subtle cool gray/blue */
-    --foreground: 222.2 47.4% 11.2%; /* Deep Navy */
+    --background: 220 15% 97%;
+    /* Light grey/lavender background (#f1f3f5) */
+    --foreground: 222.2 47.4% 11.2%;
+    /* Deep Navy Slate for text */
 
     --card: 0 0% 100%;
+    /* Pure white for cards */
     --card-foreground: 222.2 47.4% 11.2%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 47.4% 11.2%;
 
-    --primary: 222.2 47.4% 11.2%; /* Deep Navy Blue */
+    --primary: 266 35% 42%;
+    /* Rich Deep Purple (#5f3f7e) for the main headers and sections */
     --primary-foreground: 210 40% 98%;
+    /* Light white text on purple */
 
-    --secondary: 214.3 31.8% 91.4%;
+    --secondary: 210 20% 90%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 214.3 31.8% 91.4%;
+    --muted: 210 20% 90%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 173 80% 40%; /* Medical Teal */
+    --accent: 147 47% 39%;
+    /* Medical Emerald Green (#348b59) for buttons and active badges */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 173 80% 40%;
+    --border: 214.3 32% 88%;
+    --input: 214.3 32% 88%;
+    --ring: 266 35% 42%;
 
-    --radius: 0.75rem; /* Modern rounded corners */
+    --radius: 1rem;
   }
 
   .dark {
@@ -70,17 +76,30 @@
   * {
     @apply border-border;
   }
+
   body {
+    font-family: var(--font-body), sans-serif;
     @apply bg-background text-foreground antialiased;
-    /* Subtle mesh gradient overlay on body */
-    background-image: radial-gradient(at 0% 0%, hsla(210,40%,98%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(173,80%,40%,0.05) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(222,47%,11%,0.05) 0, transparent 50%);
+    /* Subtle mesh gradient overlay on body matching the purple/green palette */
+    background-image: radial-gradient(at 0% 0%, hsla(220, 15%, 97%, 1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(266, 35%, 42%, 0.04) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(147, 47%, 39%, 0.03) 0, transparent 50%);
     background-attachment: fixed;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading), serif;
+  }
+
   ::selection {
     background-color: hsl(var(--accent) / 0.2);
     color: inherit;
   }
 }
+
 
 /* Custom Ecosystem Network Utilities */
 .glass-card {
