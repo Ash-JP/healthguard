@@ -16,18 +16,19 @@ export default {
     },
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "var(--primary)",
-          foreground: "var(--primary-foreground)",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         accent: {
-          DEFAULT: "var(--accent)",
-          foreground: "var(--accent-foreground)",
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
-        border: "var(--border)",
-        muted: "var(--muted)",
+        heading: "hsl(var(--heading))",
+        border: "hsl(var(--border))",
+        muted: "hsl(var(--muted))",
       },
     },
   },

@@ -20,7 +20,7 @@ export default function HomeContent() {
     <>
       <div className="home-snap-container hidden" aria-hidden="true"></div>
       {/* Hero Section with Blueprint Pattern */}
-      <section className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center relative overflow-hidden bg-primary text-primary-foreground py-12">
+      <section className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center relative overflow-hidden bg-grad-hero text-white py-12">
         {/* Animated Blueprint SVG Overlay */}
         <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -39,14 +39,15 @@ export default function HomeContent() {
         <div className="container relative z-10 text-center max-w-4xl mx-auto">
           <motion.h1 
             className="text-5xl lg:text-7xl font-bold tracking-tight mb-6"
+            style={{ fontFamily: "var(--font-heading-hero), serif" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Complete Healthcare Supply Solutions <span className="text-accent">For Every Department</span>
+            Complete Healthcare Supply Solutions For Every <span className="text-white underline decoration-[#C9A8DD]">Department</span>
           </motion.h1>
           <motion.p 
-            className="text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto"
+            className="text-xl text-white/80 mb-10 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -59,10 +60,10 @@ export default function HomeContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white" asChild>
+            <Button size="lg" className="bg-white text-[#713D87] hover:bg-white/90 font-semibold" asChild>
               <Link href="#ecosystem">Explore Ecosystem</Link>
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground/20 hover:bg-primary-foreground/10" asChild>
+            <Button size="lg" variant="outline" className="bg-transparent border-[#C9A8DD] text-[#C9A8DD] hover:bg-[#C9A8DD]/10" asChild>
               <Link href="/departments">View Departments</Link>
             </Button>
           </motion.div>
@@ -70,7 +71,7 @@ export default function HomeContent() {
       </section>
 
       {/* Radical Interactive Ecosystem */}
-      <section id="ecosystem" className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center py-12 relative overflow-hidden bg-secondary/20">
+      <section id="ecosystem" className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center py-12 relative overflow-hidden bg-transparent">
         <motion.div 
           className="container relative z-10 text-center mb-8 lg:mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -78,8 +79,8 @@ export default function HomeContent() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-primary mb-4">Ecosystem Supply Flow</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-[#211428] mb-4">Ecosystem Supply <span className="text-[#713D87]">Flow</span></h2>
+          <p className="text-[#6B5876] text-lg max-w-2xl mx-auto">
             Discover how critical medical supplies move through our hospital network based on your specific role.
           </p>
         </motion.div>
@@ -116,7 +117,7 @@ export default function HomeContent() {
       </section>
 
       {/* Featured Products */}
-      <section className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center bg-secondary/50 py-12">
+      <section className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center bg-transparent py-12">
         <div className="container">
           <motion.div 
             className="flex justify-between items-end mb-10"
@@ -126,10 +127,10 @@ export default function HomeContent() {
             transition={{ duration: 0.5 }}
           >
             <div>
-              <h2 className="text-3xl font-bold text-primary mb-2">Featured Solutions</h2>
-              <p className="text-muted-foreground">Industry-leading equipment across all departments.</p>
+              <h2 className="text-3xl font-bold text-[#211428] mb-2">Featured <span className="text-[#713D87]">Solutions</span></h2>
+              <p className="text-[#6B5876]">Industry-leading equipment across all departments.</p>
             </div>
-            <Button variant="outline" asChild>
+            <Button variant="outline" className="border-[#713D87] text-[#713D87] hover:bg-[#713D87]/5" asChild>
               <Link href="/departments">View All</Link>
             </Button>
           </motion.div>
@@ -143,7 +144,7 @@ export default function HomeContent() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="h-full group overflow-hidden border-2 hover:border-accent transition-colors">
+                <Card className="glass-card h-full group overflow-hidden transition-all duration-300 hover:border-[#C9A8DD]">
                   <div className="relative h-48 bg-muted w-full overflow-hidden">
                     <Image 
                       src={product.image} 
@@ -176,13 +177,13 @@ export default function HomeContent() {
       {/* Why Choose Us */}
       <section className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center container py-12">
         <motion.h2 
-          className="text-3xl font-bold text-center text-primary mb-12"
+          className="text-3xl font-bold text-center text-[#211428] mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
         >
-          Enterprise Standards
+          Enterprise <span className="text-[#713D87]">Standards</span>
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[

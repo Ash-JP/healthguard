@@ -1,7 +1,7 @@
 import './globals.css';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Navbar } from '@/components/ui/Navbar';
+import { Inter, Poppins, Cormorant_Garamond } from 'next/font/google';
 
 import type { Metadata } from 'next';
 const inter = Inter({
@@ -10,9 +10,17 @@ const inter = Inter({
   display: 'swap',
 });
 
-const playfair = Playfair_Display({
+const poppins = Poppins({
+  weight: ['400', '600', '700'],
   subsets: ['latin'],
   variable: '--font-heading',
+  display: 'swap',
+});
+
+const cormorant = Cormorant_Garamond({
+  weight: ['500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-heading-hero',
   display: 'swap',
 });
 
@@ -55,64 +63,52 @@ const organizationSchema = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} min-h-screen flex flex-col bg-background selection:bg-accent/20`}>
+      <body className={`${inter.variable} ${poppins.variable} ${cormorant.variable} min-h-screen flex flex-col bg-background selection:bg-accent/20 relative`}>
+        {/* Background Blobs for Glassmorphism */}
+        <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+          <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blob-1" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-blob-2" />
+        </div>
 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        <header className="sticky top-0 z-50 w-full border-b border-white/20 bg-white/60 dark:bg-black/40 backdrop-blur-xl shadow-sm supports-[backdrop-filter]:bg-white/40">
-          <div className="container flex h-20 items-center justify-between">
-            <Link href="/" className="font-bold text-2xl text-primary tracking-tight flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-xl shadow-md">+</div>
-              Healthguard
-            </Link>
-            <nav className="hidden md:flex gap-6 text-sm font-medium">
-              <Link href="/" className="transition-colors hover:text-accent">Home</Link>
-              <Link href="/about" className="transition-colors hover:text-accent">About Us</Link>
-              <Link href="/departments" className="transition-colors hover:text-accent">Ecosystem</Link>
-              <Link href="/products" className="transition-colors hover:text-accent">Catalog</Link>
-              <Link href="/services" className="transition-colors hover:text-accent">Services</Link>
-              <Link href="/contact" className="transition-colors hover:text-accent">Contact</Link>
-            </nav>
-            <Button variant="default" className="bg-primary hover:bg-primary/90" asChild>
-              <Link href="/contact">Request Catalog</Link>
-            </Button>
-          </div>
-        </header>
+        <Navbar />
 
         <main className="flex-1 flex flex-col">
           {children}
         </main>
 
-        <footer className="border-t bg-secondary/30 mt-auto py-12 snap-start">
+        <footer className="border-t border-white/10 bg-grad-footer mt-auto py-12 text-white snap-start">
           <div className="container grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="font-bold text-xl mb-4 text-primary">Healthguard</h3>
-              <p className="text-muted-foreground text-sm">Premium interactive medical supply ecosystems for top-tier healthcare facilities worldwide.</p>
+              <h3 className="font-bold text-xl mb-4 text-white">Healthguard</h3>
+              <p className="text-white/70 text-sm">Premium interactive medical supply ecosystems for top-tier healthcare facilities worldwide.</p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/about" className="hover:text-accent transition-colors">About Us</Link></li>
-                <li><Link href="/products" className="hover:text-accent transition-colors">Catalog</Link></li>
-                <li><Link href="/services" className="hover:text-accent transition-colors">Services</Link></li>
-                <li><Link href="/contact" className="hover:text-accent transition-colors">Contact</Link></li>
+              <h4 className="font-semibold mb-4 text-white">Company</h4>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/products" className="hover:text-white transition-colors">Catalog</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors">Services</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Ecosystem</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/departments/cssd" className="hover:text-accent transition-colors">CSSD Workflow</Link></li>
-                <li><Link href="/departments/endoscopy" className="hover:text-accent transition-colors">Endoscopy Suite</Link></li>
-                <li><Link href="/departments/radiology" className="hover:text-accent transition-colors">Radiology</Link></li>
+              <h4 className="font-semibold mb-4 text-white">Ecosystem</h4>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li><Link href="/departments/cssd" className="hover:text-white transition-colors">CSSD Pipeline</Link></li>
+                <li><Link href="/departments/endoscopy" className="hover:text-white transition-colors">Endoscopy Suite</Link></li>
+                <li><Link href="/departments/radiology" className="hover:text-white transition-colors">Radiology</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="hover:text-accent transition-colors cursor-pointer">Privacy Policy</li>
-                <li className="hover:text-accent transition-colors cursor-pointer">Terms of Service</li>
+              <h4 className="font-semibold mb-4 text-white">Connect</h4>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Twitter</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Support Portal</a></li>
               </ul>
             </div>
           </div>

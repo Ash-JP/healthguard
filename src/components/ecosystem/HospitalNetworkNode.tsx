@@ -64,35 +64,26 @@ export function HospitalNetworkNode({ activeRole }: { activeRole: Role }) {
   const activePaths = getActivePaths();
 
   return (
-    <div className="relative w-full h-full min-h-[600px] rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-xl">
-      {/* Clean Clinical Background */}
-      <div className="absolute inset-0 bg-slate-50/50" />
-      <div className="absolute inset-0 opacity-[0.04]" style={{ 
-        backgroundImage: `
-          linear-gradient(90deg, transparent 48%, currentColor 48%, currentColor 52%, transparent 52%),
-          linear-gradient(0deg, transparent 48%, currentColor 48%, currentColor 52%, transparent 52%)
-        `, 
-        backgroundSize: '40px 40px',
-        color: '#0ea5e9' // Medical blue color for the cross pattern
-      }} />
-      <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-slate-100/60" />
+    <div className="relative w-full h-full min-h-[600px] rounded-3xl overflow-hidden glass-card">
+      {/* Soft overlay matching glassmorphism properties slightly to enforce readability */}
+      <div className="absolute inset-0 bg-white/20" />
 
       {/* Network Data Beams (Base Lines) */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none">
+      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
         <path d="M 20% 25% L 50% 25% M 20% 75% L 50% 75% M 50% 25% L 80% 50% M 50% 75% L 80% 50% M 20% 25% L 50% 75% M 20% 75% L 50% 25% M 50% 25% L 50% 75% M 20% 25% L 20% 75% M 20% 75% L 80% 50%" 
-              fill="none" stroke="#e2e8f0" strokeWidth="2" strokeDasharray="6 6" />
+              fill="none" stroke="#C9A8DD" strokeWidth="2" strokeDasharray="6 6" className="opacity-40" />
 
-        {/* Animated Clinical Fluid Lines */}
+        {/* Animated Fluid Lines - Mid Orchid */}
         <AnimatePresence>
           {activeRole && activePaths.map((path, i) => (
             <motion.path
               key={activeRole + i}
               d={path}
               fill="none"
-              stroke="#10b981" // Emerald-500 (Medical Green)
+              stroke="#9B5FB0" // Mid orchid
               strokeWidth="4"
               strokeLinecap="round"
-              className="drop-shadow-[0_0_8px_rgba(16,185,129,0.4)]"
+              className="drop-shadow-[0_0_8px_rgba(155,95,176,0.4)]"
               strokeDasharray="16 16" // Simulates fluid or pulse
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
@@ -119,30 +110,30 @@ export function HospitalNetworkNode({ activeRole }: { activeRole: Role }) {
             <Link href={`/departments/${node.slug}`}>
               <div className={`relative group cursor-pointer flex flex-row items-center gap-4 w-56 h-20 px-4 rounded-2xl transition-all duration-500 bg-white border ${
                   isHighlighted 
-                    ? "border-emerald-500/50 shadow-lg shadow-emerald-500/10 ring-1 ring-emerald-500 z-20 scale-105" 
-                    : "border-slate-200 shadow-sm hover:border-slate-300 hover:shadow-md hover:bg-slate-50"
+                    ? "border-[#C9A8DD] shadow-lg shadow-[#9B5FB0]/10 ring-1 ring-[#9B5FB0] z-20 scale-105" 
+                    : "border-white/50 shadow-sm hover:border-[#C9A8DD] hover:shadow-md hover:bg-[#F6F0FA]"
                 }`}
               >
                 {/* Status Ping */}
                 {isHighlighted && node.activeRole !== null && (
                   <div className="absolute -top-1.5 -right-1.5 z-50">
                     <span className="flex h-3.5 w-3.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-white"></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#9B5FB0] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-[#713D87] border-2 border-white"></span>
                     </span>
                   </div>
                 )}
                 
                 {/* Clean Side Bar Indicator */}
-                <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-10 rounded-r-full transition-colors ${isHighlighted ? 'bg-emerald-500' : 'bg-slate-200'}`} />
+                <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-10 rounded-r-full transition-colors ${isHighlighted ? 'bg-[#713D87]' : 'bg-[#C9A8DD]/40'}`} />
 
                 {/* Department Icon */}
-                <div className={`p-2.5 rounded-xl transition-colors duration-300 ${isHighlighted ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-400 group-hover:bg-slate-200'}`}>
+                <div className={`p-2.5 rounded-xl transition-colors duration-300 ${isHighlighted ? 'bg-[#F6F0FA] text-[#713D87]' : 'bg-slate-50 text-[#C9A8DD] group-hover:bg-[#F6F0FA] group-hover:text-[#9B5FB0]'}`}>
                   <node.icon size={24} strokeWidth={2} />
                 </div>
                 
                 {/* Department Label */}
-                <span className={`text-[13px] font-semibold leading-tight pr-2 ${isHighlighted ? 'text-slate-800' : 'text-slate-500 group-hover:text-slate-700'}`}>
+                <span className={`text-[13px] font-semibold leading-tight pr-2 ${isHighlighted ? 'text-[#211428]' : 'text-[#6B5876] group-hover:text-[#4A2358]'}`}>
                   {node.label}
                 </span>
 

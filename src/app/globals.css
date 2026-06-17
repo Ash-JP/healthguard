@@ -9,71 +9,65 @@
   }
 
   :root {
-    --background: 220 15% 97%;
-    /* Light grey/lavender background (#f1f3f5) */
-    --foreground: 222.2 47.4% 11.2%;
-    /* Deep Navy Slate for text */
+    --background: 276 50% 96%; /* Pale lavender wash (#F6F0FA) */
+    --foreground: 278 15% 40%; /* Soft muted ink (#6B5876) */
 
     --card: 0 0% 100%;
-    /* Pure white for cards */
-    --card-foreground: 222.2 47.4% 11.2%;
+    --card-foreground: 279 33% 12%; /* Deep ink (#211428) */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
+    --popover-foreground: 279 33% 12%;
 
-    --primary: 266 35% 42%;
-    /* Rich Deep Purple (#5f3f7e) for the main headers and sections */
-    --primary-foreground: 210 40% 98%;
-    /* Light white text on purple */
+    --primary: 282 38% 38%; /* Brand purple (#713D87) */
+    --primary-foreground: 0 0% 100%; /* White */
 
-    --secondary: 210 20% 90%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 278 41% 76%; /* Light lilac (#C9A8DD) */
+    --secondary-foreground: 279 33% 12%;
 
-    --muted: 210 20% 90%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 278 41% 76%;
+    --muted-foreground: 278 15% 40%;
 
-    --accent: 147 47% 39%;
-    /* Medical Emerald Green (#348b59) for buttons and active badges */
-    --accent-foreground: 210 40% 98%;
+    --accent: 284 36% 53%; /* Mid orchid (#9B5FB0) */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 32% 88%;
-    --input: 214.3 32% 88%;
-    --ring: 266 35% 42%;
+    --border: 278 41% 76%; /* Light lilac (#C9A8DD) */
+    --input: 278 41% 76%;
+    --ring: 284 36% 53%; /* Mid orchid */
+
+    --heading: 279 33% 12%; /* Deep ink for headings */
 
     --radius: 1rem;
   }
+}
 
-  .dark {
-    --background: 222.2 47.4% 11.2%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 47.4% 11.2%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 47.4% 11.2%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 173 80% 40%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 173 80% 40%;
+@layer utilities {
+  .bg-grad-nav {
+    background: linear-gradient(120deg, #2D1638 0%, #713D87 55%, #4A2358 100%);
+  }
+  .bg-grad-footer {
+    background: linear-gradient(160deg, #4A2358 0%, #2D1638 100%);
+  }
+  .bg-grad-hero {
+    background: linear-gradient(135deg, #713D87 0%, #4A2358 100%);
+  }
+  .glass-card {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.65);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 16px 40px rgba(45,22,56,0.10);
+  }
+  .bg-blob-1 {
+    background: #9B5FB0;
+    filter: blur(85px);
+    opacity: 0.25;
+  }
+  .bg-blob-2 {
+    background: #C9A8DD;
+    filter: blur(85px);
+    opacity: 0.28;
   }
 }
 
@@ -85,9 +79,6 @@
   body {
     font-family: var(--font-body), sans-serif;
     @apply bg-background text-foreground antialiased;
-    /* Subtle mesh gradient overlay on body matching the purple/green palette */
-    background-image: radial-gradient(at 0% 0%, hsla(220, 15%, 97%, 1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(266, 35%, 42%, 0.04) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(147, 47%, 39%, 0.03) 0, transparent 50%);
-    background-attachment: fixed;
   }
 
   h1,
@@ -104,9 +95,4 @@
     color: inherit;
   }
 }
-
-
-/* Custom Ecosystem Network Utilities */
-.glass-card {
-  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
-}
+
