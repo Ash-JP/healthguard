@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Settings, ShieldAlert, HeartPulse, HardDrive, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { LiveTelemetry } from "@/components/ui/LiveTelemetry";
 
 export const metadata = {
   title: "Professional Services | Healthguard Ecosystem",
@@ -45,6 +46,9 @@ export default function ServicesPage() {
             <rect width="100%" height="100%" fill="url(#dotPattern)" />
           </svg>
         </div>
+
+        {/* Live Telemetry Background */}
+        <LiveTelemetry />
 
         <div className="container relative z-10 text-center max-w-3xl mx-auto px-4">
           <Badge className="bg-accent text-accent-foreground mb-4 uppercase tracking-widest px-3 py-1 font-semibold">

@@ -85,7 +85,7 @@
       "departmentId": "cssd",
       "name": "Sterile Storage Cabinet",
       "description": "Climate-controlled, HEPA-filtered cabinet to maintain absolute sterility of packed instruments.",
-      "image": "https://images.unsplash.com/photo-1628177142898-93e46e4624d4?auto=format&fit=crop&q=80&w=600",
+      "image": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=600",
       "workflowStage": "Storage"
     },
     {

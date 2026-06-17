@@ -10,6 +10,7 @@ import { ShieldCheck, Truck, HeadphonesIcon, Award } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import inventory from "@/data/inventory.json";
+import { LiveTelemetry } from "@/components/ui/LiveTelemetry";
 
 export default function HomeContent() {
   const [activeRole, setActiveRole] = useState<Role>(null);
@@ -17,10 +18,11 @@ export default function HomeContent() {
 
   return (
     <>
+      <div className="home-snap-container hidden" aria-hidden="true"></div>
       {/* Hero Section with Blueprint Pattern */}
-      <section className="relative overflow-hidden bg-primary text-primary-foreground py-24 lg:py-32">
+      <section className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center relative overflow-hidden bg-primary text-primary-foreground py-12">
         {/* Animated Blueprint SVG Overlay */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="blueprint" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -30,6 +32,9 @@ export default function HomeContent() {
             <rect width="100%" height="100%" fill="url(#blueprint)" />
           </svg>
         </div>
+        
+        {/* Live Telemetry Background */}
+        <LiveTelemetry />
         
         <div className="container relative z-10 text-center max-w-4xl mx-auto">
           <motion.h1 
@@ -65,7 +70,7 @@ export default function HomeContent() {
       </section>
 
       {/* Radical Interactive Ecosystem */}
-      <section id="ecosystem" className="py-16 relative overflow-hidden bg-secondary/20">
+      <section id="ecosystem" className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center py-12 relative overflow-hidden bg-secondary/20">
         <motion.div 
           className="container relative z-10 text-center mb-8 lg:mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -79,21 +84,22 @@ export default function HomeContent() {
           </p>
         </motion.div>
 
-        {/* Desktop View: Full Width Graph with Dock Below */}
+        {/* Desktop View: Side-by-Side Layout */}
         <motion.div 
-          className="hidden lg:flex flex-col items-center gap-10 relative w-full max-w-[1400px] mx-auto px-6"
+          className="hidden lg:flex flex-row items-center gap-8 relative w-full max-w-[1400px] mx-auto px-6"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
-          <div className="w-full h-[600px] relative">
-            <HospitalNetworkNode activeRole={activeRole!} />
-          </div>
-          
-          {/* Glassmorphism Dock */}
-          <div className="z-50 w-full flex justify-center">
+          {/* Sidebar / Dock */}
+          <div className="z-50 w-1/4 flex flex-col justify-center">
             <InteractiveRoleSelector onSelectRole={setActiveRole} />
+          </div>
+
+          {/* New Grid */}
+          <div className="w-3/4 h-[600px] relative">
+            <HospitalNetworkNode activeRole={activeRole!} />
           </div>
         </motion.div>
 
@@ -110,7 +116,7 @@ export default function HomeContent() {
       </section>
 
       {/* Featured Products */}
-      <section className="bg-secondary/50 py-20">
+      <section className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center bg-secondary/50 py-12">
         <div className="container">
           <motion.div 
             className="flex justify-between items-end mb-10"
@@ -168,7 +174,7 @@ export default function HomeContent() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="container py-24">
+      <section className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center container py-12">
         <motion.h2 
           className="text-3xl font-bold text-center text-primary mb-12"
           initial={{ opacity: 0, y: 20 }}

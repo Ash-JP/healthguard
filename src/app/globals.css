@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html:has(.home-snap-container) {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
   :root {
     --background: 220 15% 97%;
     /* Light grey/lavender background (#f1f3f5) */

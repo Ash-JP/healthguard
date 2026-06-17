@@ -60,31 +60,34 @@ export function InteractiveRoleSelector({ onSelectRole }: { onSelectRole: (role:
 
   return (
     <>
-      {/* Desktop View: Sleek Floating Dock */}
-      <div className="hidden lg:flex items-center gap-6 p-4 rounded-full bg-white/40 dark:bg-black/40 backdrop-blur-3xl border border-white/60 shadow-[0_16px_40px_rgba(0,0,0,0.1)]">
+      {/* Desktop View: Sleek Vertical Sidebar */}
+      <div className="hidden lg:flex flex-col gap-4 p-4 rounded-3xl bg-white/40 dark:bg-black/40 backdrop-blur-3xl border border-white/60 shadow-[0_16px_40px_rgba(0,0,0,0.1)] w-full">
         {roles.map((role) => {
           const isSelected = selectedRole === role.id;
           return (
             <motion.div
               key={role.id}
-              whileHover={{ scale: 1.1, y: -8 }}
+              whileHover={{ scale: 1.05, x: 8 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => handleSelect(role.id as Role)}
-              className={`relative cursor-pointer flex flex-col items-center justify-center w-[120px] h-[120px] rounded-full transition-all duration-300 ${
+              className={`relative cursor-pointer flex flex-row items-center gap-4 w-full p-4 rounded-2xl transition-all duration-300 ${
                 isSelected 
-                  ? "bg-primary text-primary-foreground shadow-2xl shadow-primary/40 ring-4 ring-primary/20 scale-105" 
+                  ? "bg-primary text-primary-foreground shadow-2xl shadow-primary/40 ring-2 ring-primary/50 scale-[1.02]" 
                   : "bg-background/80 hover:bg-muted/80 text-foreground shadow-sm hover:shadow-xl border border-border"
               }`}
             >
-              <role.icon size={32} className={`mb-2 transition-colors ${isSelected ? "text-primary-foreground" : "text-muted-foreground"}`} strokeWidth={1.5} />
-              <span className={`text-sm font-bold text-center leading-tight px-3 ${isSelected ? "text-primary-foreground" : "text-foreground"}`}>{role.id}</span>
+              <role.icon size={28} className={`transition-colors flex-shrink-0 ${isSelected ? "text-primary-foreground" : "text-muted-foreground"}`} strokeWidth={1.5} />
+              <div className="flex flex-col text-left">
+                <span className={`text-sm font-bold leading-tight ${isSelected ? "text-primary-foreground" : "text-foreground"}`}>{role.id}</span>
+                <span className={`text-xs mt-0.5 ${isSelected ? "text-primary-foreground/80" : "text-muted-foreground"}`}>{role.desc}</span>
+              </div>
               
-              {/* Active Indicator Dot */}
+              {/* Active Indicator Line */}
               <AnimatePresence>
                 {isSelected && (
                   <motion.div 
                     layoutId="dock-indicator" 
-                    className="absolute -bottom-4 w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(var(--accent),1)]"
+                    className="absolute -left-4 top-1/2 -translate-y-1/2 w-1.5 h-8 rounded-r-full bg-accent shadow-[0_0_8px_rgba(var(--accent),1)]"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

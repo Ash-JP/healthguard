@@ -85,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
 
-        <footer className="border-t bg-secondary/30 mt-auto py-12">
+        <footer className="border-t bg-secondary/30 mt-auto py-12 snap-start">
           <div className="container grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="font-bold text-xl mb-4 text-primary">Healthguard</h3>
