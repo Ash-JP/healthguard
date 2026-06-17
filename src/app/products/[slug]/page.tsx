@@ -36,8 +36,25 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const department = inventory.departments.find(d => d.id === product.departmentId);
 
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.description,
+    "image": product.image,
+    "sku": product.id.toUpperCase(),
+    "brand": {
+      "@type": "Brand",
+      "name": "Healthguard"
+    }
+  };
+
   return (
     <div className="container py-24 max-w-6xl mx-auto">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <div className="mb-8">
         <Link 
           href={department ? `/departments/${department.slug}` : '/departments'} 

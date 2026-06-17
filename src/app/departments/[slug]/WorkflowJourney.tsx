@@ -17,6 +17,59 @@ const ALL_STAGES = [
 ];
 
 export function WorkflowJourney({ department, products }: { department: any, products: any[] }) {
+  // Check if any product has a workflowStage defined
+  const hasWorkflow = products.some(p => p.workflowStage);
+
+  if (!hasWorkflow) {
+    return (
+      <div className="container py-16 max-w-5xl">
+        <div className="mb-16 text-center">
+          <h2 className="text-3xl font-bold text-primary mb-4">Core Equipment Portfolio</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Browse premium solutions engineered for high performance in the {department.name} department.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product, index) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card className="h-full overflow-hidden group border-2 hover:border-accent transition-all duration-300 hover:shadow-lg flex flex-col justify-between">
+                <div>
+                  <div className="relative h-56 w-full bg-muted overflow-hidden">
+                    <Image 
+                      src={product.image} 
+                      alt={product.name} 
+                      fill 
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-bold text-xl mb-3 text-primary line-clamp-1">{product.name}</h3>
+                    <p className="text-muted-foreground text-sm line-clamp-3 mb-4">{product.description}</p>
+                  </CardContent>
+                </div>
+                <div className="px-6 pb-6">
+                  <Button className="w-full bg-primary hover:bg-accent text-white transition-colors" asChild>
+                    <Link href={`/products/${product.slug}`}>
+                      View Details
+                    </Link>
+                  </Button>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   // Group products by workflow stage
   const productsByStage = ALL_STAGES.reduce((acc, stage) => {
     acc[stage] = products.filter(p => p.workflowStage === stage);

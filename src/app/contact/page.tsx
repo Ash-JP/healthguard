@@ -13,13 +13,21 @@ function ContactFormContent() {
   const requestedProduct = searchParams.get('product') || '';
   
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (formData: FormData) => {
     setStatus("loading");
+    setErrorMessage("");
     try {
-      await sendEmailAction(formData);
-      setStatus("success");
+      const result = await sendEmailAction(formData);
+      if (result.status === "success") {
+        setStatus("success");
+      } else {
+        setErrorMessage(result.message || "Please check your inputs and try again.");
+        setStatus("error");
+      }
     } catch (error) {
+      setErrorMessage("An unexpected error occurred. Please try again later.");
       setStatus("error");
     }
   };
@@ -41,6 +49,12 @@ function ContactFormContent() {
         </div>
       ) : (
         <form action={handleSubmit} className="space-y-4">
+          {status === "error" && (
+            <div className="bg-red-50 text-red-800 p-4 rounded-lg text-sm border border-red-200">
+              <strong>Error:</strong> {errorMessage}
+            </div>
+          )}
+
           <div className="space-y-2">
             <label htmlFor="name" className="text-sm font-medium">Full Name</label>
             <input type="text" id="name" name="name" required className="w-full p-3 rounded-md border bg-background" placeholder="Dr. Jane Doe" />
@@ -49,6 +63,11 @@ function ContactFormContent() {
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-medium">Work Email</label>
             <input type="email" id="email" name="email" required className="w-full p-3 rounded-md border bg-background" placeholder="jane@hospital.org" />
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="facility" className="text-sm font-medium">Hospital / Facility Name</label>
+            <input type="text" id="facility" name="facility" required className="w-full p-3 rounded-md border bg-background" placeholder="Mercy General Hospital" />
           </div>
           
           <div className="space-y-2">
@@ -80,7 +99,7 @@ export default function ContactPage() {
         <div className="container text-center">
           <h1 className="text-4xl font-bold text-primary mb-4">Enterprise Partnerships</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Connect with our ecosystem specialists to build your department's exact requirements.
+            Connect with our ecosystem specialists to build your department&apos;s exact requirements.
           </p>
         </div>
       </section>

@@ -2,15 +2,52 @@ import './globals.css';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
-export const metadata = {
-  title: 'Healthguard | Premium Medical Ecosystem',
+import type { Metadata } from 'next';
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://healthguard-ecosystem.com';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: {
+    template: '%s | Healthguard Ecosystem',
+    default: 'Healthguard | Premium Medical Ecosystem',
+  },
   description: 'Global B2B interactive ecosystem for premium medical supplies and surgical equipment.',
+  openGraph: {
+    title: 'Healthguard | Premium Medical Ecosystem',
+    description: 'Global B2B interactive ecosystem for premium medical supplies and surgical equipment.',
+    url: '/',
+    siteName: 'Healthguard',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Healthguard Ecosystem',
+    description: 'Premium medical supplies and surgical equipment.',
+  },
+  alternates: {
+    canonical: '/',
+  }
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Healthguard Ecosystem",
+  "url": baseUrl,
+  "logo": `${baseUrl}/favicon.ico`,
+  "description": "Global B2B interactive ecosystem for premium medical supplies and surgical equipment."
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-background selection:bg-accent/20">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <header className="sticky top-0 z-50 w-full border-b border-white/20 bg-white/60 dark:bg-black/40 backdrop-blur-xl shadow-sm supports-[backdrop-filter]:bg-white/40">
           <div className="container flex h-20 items-center justify-between">
             <Link href="/" className="font-bold text-2xl text-primary tracking-tight flex items-center gap-2">
@@ -21,6 +58,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/" className="transition-colors hover:text-accent">Home</Link>
               <Link href="/about" className="transition-colors hover:text-accent">About Us</Link>
               <Link href="/departments" className="transition-colors hover:text-accent">Ecosystem</Link>
+              <Link href="/products" className="transition-colors hover:text-accent">Catalog</Link>
+              <Link href="/services" className="transition-colors hover:text-accent">Services</Link>
               <Link href="/contact" className="transition-colors hover:text-accent">Contact</Link>
             </nav>
             <Button variant="default" className="bg-primary hover:bg-primary/90" asChild>
@@ -43,6 +82,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><Link href="/about" className="hover:text-accent transition-colors">About Us</Link></li>
+                <li><Link href="/products" className="hover:text-accent transition-colors">Catalog</Link></li>
+                <li><Link href="/services" className="hover:text-accent transition-colors">Services</Link></li>
                 <li><Link href="/contact" className="hover:text-accent transition-colors">Contact</Link></li>
               </ul>
             </div>

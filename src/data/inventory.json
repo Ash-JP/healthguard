@@ -58,7 +58,7 @@
       "departmentId": "cssd",
       "name": "Automated Endoscope Reprocessor",
       "description": "Complete workflow automation for endoscope cleaning and high-level disinfection.",
-      "image": "https://images.unsplash.com/photo-1583947581924-860bda6a5d4a?auto=format&fit=crop&q=80&w=600",
+      "image": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=600",
       "workflowStage": "Disinfection"
     },
     {
@@ -67,7 +67,7 @@
       "departmentId": "cssd",
       "name": "Rotary Heat Sealer",
       "description": "Medical grade rotary sealing machine for sterilization pouches with validatable parameters.",
-      "image": "https://images.unsplash.com/photo-1581595220887-b9c2117565c4?auto=format&fit=crop&q=80&w=600",
+      "image": "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=600",
       "workflowStage": "Packing"
     },
     {
@@ -106,12 +106,52 @@
       "image": "https://images.unsplash.com/photo-1579684453377-48ec05c6b30a?auto=format&fit=crop&q=80&w=600"
     },
     {
+      "id": "endo-02",
+      "slug": "video-colonoscope-v-100",
+      "departmentId": "endoscopy",
+      "name": "Video Colonoscope V-100",
+      "description": "High-resolution video colonoscope featuring a wide 170-degree field of view and advanced auxiliary water-jet channels.",
+      "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=600"
+    },
+    {
+      "id": "endo-03",
+      "slug": "endoscopic-light-source",
+      "departmentId": "endoscopy",
+      "name": "Endoscopic Light Source",
+      "description": "Ultra-bright LED light source offering daylight-quality illumination and high durability for all diagnostic procedures.",
+      "image": "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=600"
+    },
+    {
+      "id": "endo-04",
+      "slug": "co2-insufflator-i-400",
+      "departmentId": "endoscopy",
+      "name": "CO2 Insufflator I-400",
+      "description": "Microprocessor-controlled CO2 insufflator for stable pressure management and patient comfort during endoscopic interventions.",
+      "image": "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&q=80&w=600"
+    },
+    {
       "id": "radio-01",
       "slug": "digital-x-ray-system",
       "departmentId": "radiology",
       "name": "Digital X-Ray System",
       "description": "Low-dose digital X-ray machine with instant high-resolution image processing.",
       "image": "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=600"
+    },
+    {
+      "id": "radio-02",
+      "slug": "ultrasound-imaging-system-u-4",
+      "departmentId": "radiology",
+      "name": "Ultrasound Imaging System U-4",
+      "description": "Multi-purpose diagnostic ultrasound scanner with advanced shear wave elastography and live 3D/4D imaging capabilities.",
+      "image": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=600"
+    },
+    {
+      "id": "radio-03",
+      "slug": "mobile-c-arm-system-c-300",
+      "departmentId": "radiology",
+      "name": "Mobile C-Arm System C-300",
+      "description": "Compact, high-frequency mobile C-Arm fluoroscopy system designed for real-time guidance during general surgery and orthopedics.",
+      "image": "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=600"
     }
   ]
 }

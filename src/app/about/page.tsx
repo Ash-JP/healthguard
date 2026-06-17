@@ -11,7 +11,7 @@ export default function AboutPage() {
         <div className="container relative z-10 text-center max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">About Healthguard</h1>
           <p className="text-xl text-primary-foreground/80">
-            Pioneering the concept of Interactive Hospital Supply Ecosystems. We don't just sell products; we equip workflows.
+            Pioneering the concept of Interactive Hospital Supply Ecosystems. We don&apos;t just sell products; we equip workflows.
           </p>
         </div>
       </section>
@@ -20,7 +20,7 @@ export default function AboutPage() {
         <div className="prose prose-lg dark:prose-invert max-w-none">
           <h2 className="text-3xl font-bold text-primary mb-6">Our Mission</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            To provide enterprise-grade, workflow-integrated medical equipment solutions to the world's leading healthcare institutions. We believe that procurement should be tied directly to the clinical pathways and departmental workflows they support.
+            To provide enterprise-grade, workflow-integrated medical equipment solutions to the world&apos;s leading healthcare institutions. We believe that procurement should be tied directly to the clinical pathways and departmental workflows they support.
           </p>
 
           <h2 className="text-3xl font-bold text-primary mb-6 mt-12">The Ecosystem Approach</h2>
