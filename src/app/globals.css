@@ -53,6 +53,9 @@
   .bg-grad-hero {
     background: linear-gradient(135deg, #713D87 0%, #4A2358 100%);
   }
+  .bg-hero-gradient {
+    background: radial-gradient(ellipse at center, rgba(201,168,221,0.15) 0%, rgba(113,61,135,0.05) 60%, transparent 100%);
+  }
   .glass-card {
     background: rgba(255,255,255,0.55);
     border: 1px solid rgba(255,255,255,0.65);

@@ -36,15 +36,19 @@ export function LiveTelemetry() {
         Using framer-motion to create an infinite horizontal scroll.
       */}
       <div className="absolute top-0 left-0 w-full overflow-hidden border-b border-white/10 bg-black/20 backdrop-blur-md py-1.5 z-20">
+        {/* 
+          Seamless ticker: content is duplicated, and we animate by -50% of the total width.
+          This means we slide exactly one copy's width, then loop — works at any screen size.
+        */}
         <div className="flex overflow-hidden relative">
           <motion.div 
-            className="flex gap-16 items-center text-[11px] uppercase tracking-wider font-mono text-white/70 whitespace-nowrap px-8"
-            animate={{ x: [0, -1000] }}
+            className="flex items-center text-[11px] uppercase tracking-wider font-mono text-white/70 whitespace-nowrap"
+            animate={{ x: ["0%", "-50%"] }}
             transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
           >
-            {/* We duplicate the content twice to ensure seamless infinite scrolling */}
+            {/* Content duplicated twice for seamless looping */}
             {[1, 2].map((group) => (
-              <div key={group} className="flex gap-16 items-center">
+              <div key={group} className="flex gap-16 items-center px-8">
                 <span className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#9B5FB0] animate-pulse" />
                   Global Sterilization Cycles: <span className="font-bold text-white">{cycles.toLocaleString("en-US")}</span>

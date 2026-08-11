@@ -5,46 +5,41 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck, Boxes, Syringe, Cpu, Building2, ArrowDown } from "lucide-react";
 import Link from "next/link";
 
-export type Role = "CSSD Manager" | "Procurement Officer" | "Nurse" | "Biomedical Engineer" | "Administrator" | null;
+export type Role = "CSSD Manager" | "Decontamination Technician" | "Assembly & Packaging Tech" | "Sterilization Operator" | "Logistics Coordinator" | null;
 
 const roles = [
   { 
-    id: "CSSD Manager", icon: ShieldCheck, desc: "Sterilization Control", 
+    id: "CSSD Manager", icon: ShieldCheck, desc: "Overall Workflow Control", 
     flow: [
-      { name: "CSSD Department", link: "/departments/cssd" },
-      { name: "Surgical Instruments", link: "/departments/surgery" },
-      { name: "Endoscopy", link: "/departments/endoscopy" }
+      { name: "Receiving & Decontam", link: "/ecosystem" },
+      { name: "Packaging & Sealing", link: "/ecosystem" },
+      { name: "Sterilization QA", link: "/ecosystem" },
+      { name: "Logistics & Storage", link: "/ecosystem" }
     ]
   },
   { 
-    id: "Procurement Officer", icon: Boxes, desc: "Sourcing & Supply",
+    id: "Decontamination Technician", icon: Syringe, desc: "Bioburden Removal",
     flow: [
-      { name: "Radiology", link: "/departments/radiology" },
-      { name: "CSSD Department", link: "/departments/cssd" },
-      { name: "All Departments", link: "/departments" }
+      { name: "Receiving & Decontam", link: "/ecosystem" }
     ]
   },
   { 
-    id: "Nurse", icon: Syringe, desc: "Patient Care",
+    id: "Assembly & Packaging Tech", icon: Boxes, desc: "Instrument Protection",
     flow: [
-      { name: "Endoscopy", link: "/departments/endoscopy" },
-      { name: "Surgical Instruments", link: "/departments/surgery" },
-      { name: "All Departments", link: "/departments" }
+      { name: "Packaging & Sealing", link: "/ecosystem" }
     ]
   },
   { 
-    id: "Biomedical Engineer", icon: Cpu, desc: "Maintenance",
+    id: "Sterilization Operator", icon: Cpu, desc: "Lethality Verification",
     flow: [
-      { name: "Radiology", link: "/departments/radiology" },
-      { name: "Endoscopy", link: "/departments/endoscopy" },
-      { name: "CSSD Department", link: "/departments/cssd" }
+      { name: "Sterilization QA", link: "/ecosystem" }
     ]
   },
   { 
-    id: "Administrator", icon: Building2, desc: "Operations",
+    id: "Logistics Coordinator", icon: Building2, desc: "Inventory & Traceability",
     flow: [
-      { name: "Analytics Overview", link: "/departments" },
-      { name: "Global Supply Chain", link: "/departments" }
+      { name: "Logistics & Storage", link: "/ecosystem" },
+      { name: "Solutions Catalog", link: "/products" }
     ]
   },
 ];

@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Role } from "./InteractiveRoleSelector";
 import Link from "next/link";
-import { ShieldPlus, Activity, HeartPulse, Bed, FlaskConical, LucideIcon } from "lucide-react";
+import { ShieldPlus, PackageCheck, Thermometer, Warehouse, LucideIcon } from "lucide-react";
 
 interface NodeProps {
   id: string;
@@ -16,75 +16,84 @@ interface NodeProps {
   activeRole: Role | null;
 }
 
+// ViewBox is 1000 x 600. Node x/y are percentages mapped to these dimensions.
 const nodes: NodeProps[] = [
-  { id: "cssd", label: "CSSD Processing", slug: "cssd", x: 20, y: 25, icon: ShieldPlus, relevantRoles: ["CSSD Manager", "Administrator", "Nurse", "Procurement Officer"], activeRole: null },
-  { id: "lab", label: "Diagnostic Lab", slug: "laboratory", x: 20, y: 75, icon: FlaskConical, relevantRoles: ["Biomedical Engineer", "Procurement Officer", "Administrator"], activeRole: null },
-  { id: "ot", label: "Operation Theatre", slug: "operation-theatre", x: 50, y: 25, icon: Activity, relevantRoles: ["CSSD Manager", "Nurse", "Biomedical Engineer", "Administrator"], activeRole: null },
-  { id: "nursing", label: "Nursing Wards", slug: "nursing", x: 50, y: 75, icon: Bed, relevantRoles: ["Nurse", "Procurement Officer", "CSSD Manager", "Administrator"], activeRole: null },
-  { id: "icu", label: "Intensive Care", slug: "icu", x: 80, y: 50, icon: HeartPulse, relevantRoles: ["Nurse", "Biomedical Engineer", "Administrator"], activeRole: null },
+  { id: "cssd-1", label: "Receiving & Decontam", slug: "ecosystem", x: 20, y: 30, icon: ShieldPlus, relevantRoles: ["CSSD Manager", "Decontamination Technician"], activeRole: null },
+  { id: "cssd-2", label: "Inspection & Packaging", slug: "ecosystem", x: 40, y: 70, icon: PackageCheck, relevantRoles: ["CSSD Manager", "Assembly & Packaging Tech"], activeRole: null },
+  { id: "cssd-3", label: "Sterilization QA", slug: "ecosystem", x: 60, y: 30, icon: Thermometer, relevantRoles: ["CSSD Manager", "Sterilization Operator"], activeRole: null },
+  { id: "cssd-4", label: "Logistics & Storage", slug: "ecosystem", x: 80, y: 70, icon: Warehouse, relevantRoles: ["CSSD Manager", "Logistics Coordinator"], activeRole: null },
 ];
+
+const toSvgCoord = (x: number, y: number) => ({ sx: x * 10, sy: y * 6 });
+const makePath = (x1: number, y1: number, x2: number, y2: number) => {
+  const { sx: sx1, sy: sy1 } = toSvgCoord(x1, y1);
+  const { sx: sx2, sy: sy2 } = toSvgCoord(x2, y2);
+  return `M ${sx1} ${sy1} L ${sx2} ${sy2}`;
+};
 
 export function HospitalNetworkNode({ activeRole }: { activeRole: Role }) {
   const populatedNodes = nodes.map(n => ({ ...n, activeRole }));
 
-  // Defines the paths that should light up based on role
   const getActivePaths = () => {
     if (!activeRole) return [];
+    
+    // The main unidirectional flow of CSSD
     if (activeRole === "CSSD Manager") return [
-      "M 20% 25% L 50% 25%", // CSSD -> OT
-      "M 20% 25% L 50% 75%"  // CSSD -> Nursing
+      makePath(20, 30, 40, 70), // 1 -> 2
+      makePath(40, 70, 60, 30), // 2 -> 3
+      makePath(60, 30, 80, 70), // 3 -> 4
     ];
-    if (activeRole === "Nurse") return [
-      "M 50% 75% L 50% 25%", // Nursing -> OT
-      "M 50% 75% L 80% 50%", // Nursing -> ICU
-      "M 20% 25% L 50% 75%"  // CSSD -> Nursing
+    if (activeRole === "Decontamination Technician") return [
+      makePath(20, 30, 40, 70), // Handover to Packaging
     ];
-    if (activeRole === "Biomedical Engineer") return [
-      "M 20% 75% L 50% 25%", // Lab -> OT
-      "M 50% 25% L 80% 50%", // OT -> ICU
-      "M 20% 75% L 80% 50%"  // Lab -> ICU (Direct)
+    if (activeRole === "Assembly & Packaging Tech") return [
+      makePath(40, 70, 60, 30), // Handover to Sterilization
     ];
-    if (activeRole === "Procurement Officer") return [
-      "M 20% 25% L 20% 75%", // CSSD <-> Lab
-      "M 20% 75% L 50% 75%"  // Lab -> Nursing
+    if (activeRole === "Sterilization Operator") return [
+      makePath(60, 30, 80, 70), // Handover to Logistics
     ];
     
-    // Administrator sees the entire network pipeline
-    return [
-      "M 20% 25% L 50% 25%", // CSSD to OT
-      "M 20% 75% L 50% 75%", // Lab to Nursing
-      "M 50% 25% L 80% 50%", // OT to ICU
-      "M 50% 75% L 80% 50%", // Nursing to ICU
-      "M 20% 25% L 50% 75%", // CSSD to Nursing
-      "M 20% 75% L 50% 25%", // Lab to OT
-      "M 50% 25% L 50% 75%"  // OT to Nursing
-    ]; 
+    return [];
   };
 
   const activePaths = getActivePaths();
 
   return (
     <div className="relative w-full h-full min-h-[600px] rounded-3xl overflow-hidden glass-card">
-      {/* Soft overlay matching glassmorphism properties slightly to enforce readability */}
       <div className="absolute inset-0 bg-white/20" />
 
-      {/* Network Data Beams (Base Lines) */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
-        <path d="M 20% 25% L 50% 25% M 20% 75% L 50% 75% M 50% 25% L 80% 50% M 50% 75% L 80% 50% M 20% 25% L 50% 75% M 20% 75% L 50% 25% M 50% 25% L 50% 75% M 20% 25% L 20% 75% M 20% 75% L 80% 50%" 
-              fill="none" stroke="#C9A8DD" strokeWidth="2" strokeDasharray="6 6" className="opacity-40" />
+      {/* Network Data Beams */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none z-0"
+        viewBox="0 0 1000 600"
+        preserveAspectRatio="none"
+      >
+        {/* Static base grid lines (The full CSSD flow) */}
+        <path
+          d={[
+            makePath(20, 30, 40, 70),
+            makePath(40, 70, 60, 30),
+            makePath(60, 30, 80, 70),
+          ].join(" ")}
+          fill="none"
+          stroke="#C9A8DD"
+          strokeWidth="2"
+          strokeDasharray="6 6"
+          opacity={0.4}
+        />
 
-        {/* Animated Fluid Lines - Mid Orchid */}
+        {/* Animated Fluid Lines */}
         <AnimatePresence>
           {activeRole && activePaths.map((path, i) => (
             <motion.path
               key={activeRole + i}
               d={path}
               fill="none"
-              stroke="#9B5FB0" // Mid orchid
+              stroke="#9B5FB0"
               strokeWidth="4"
               strokeLinecap="round"
-              className="drop-shadow-[0_0_8px_rgba(155,95,176,0.4)]"
-              strokeDasharray="16 16" // Simulates fluid or pulse
+              filter="url(#glow)"
+              strokeDasharray="40 40"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -92,10 +101,20 @@ export function HospitalNetworkNode({ activeRole }: { activeRole: Role }) {
             />
           ))}
         </AnimatePresence>
+
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
       </svg>
 
       {/* Interactive Clinical Nodes */}
-      {populatedNodes.map((node, index) => {
+      {populatedNodes.map((node) => {
         const isHighlighted = node.activeRole === null || node.relevantRoles.includes(node.activeRole);
         
         return (
@@ -107,7 +126,7 @@ export function HospitalNetworkNode({ activeRole }: { activeRole: Role }) {
             animate={{ scale: isHighlighted ? 1 : 0.9, opacity: isHighlighted ? 1 : 0.6 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
-            <Link href={`/departments/${node.slug}`}>
+            <Link href={`/${node.slug}`}>
               <div className={`relative group cursor-pointer flex flex-row items-center gap-4 w-56 h-20 px-4 rounded-2xl transition-all duration-500 bg-white border ${
                   isHighlighted 
                     ? "border-[#C9A8DD] shadow-lg shadow-[#9B5FB0]/10 ring-1 ring-[#9B5FB0] z-20 scale-105" 

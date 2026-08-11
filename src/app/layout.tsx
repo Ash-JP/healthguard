@@ -112,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </ul>
             </div>
           </div>
-          <div className="container mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+          <div className="container mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/50">
             &copy; {new Date().getFullYear()} Healthguard Ecosystem. All rights reserved.
           </div>
         </footer>

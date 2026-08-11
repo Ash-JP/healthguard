@@ -9,66 +9,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ShieldCheck, Truck, HeadphonesIcon, Award } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import inventory from "@/data/inventory.json";
-import { LiveTelemetry } from "@/components/ui/LiveTelemetry";
+import cssdProducts from "@/data/cssd-products.json";
+import { Hero } from "@/components/hero/Hero";
 
 export default function HomeContent() {
   const [activeRole, setActiveRole] = useState<Role>(null);
-  const featuredProducts = inventory.products.slice(0, 4);
+  const featuredProducts = cssdProducts.slice(0, 4);
 
   return (
     <>
       <div className="home-snap-container hidden" aria-hidden="true"></div>
-      {/* Hero Section with Blueprint Pattern */}
-      <section className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center relative overflow-hidden bg-grad-hero text-white py-12">
-        {/* Animated Blueprint SVG Overlay */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="blueprint" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#blueprint)" />
-          </svg>
-        </div>
-        
-        {/* Live Telemetry Background */}
-        <LiveTelemetry />
-        
-        <div className="container relative z-10 text-center max-w-4xl mx-auto">
-          <motion.h1 
-            className="text-5xl lg:text-7xl font-bold tracking-tight mb-6"
-            style={{ fontFamily: "var(--font-heading-hero), serif" }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Complete Healthcare Supply Solutions For Every <span className="text-white underline decoration-[#C9A8DD]">Department</span>
-          </motion.h1>
-          <motion.p 
-            className="text-xl text-white/80 mb-10 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Premium enterprise-grade medical equipment tailored to the exact workflows of modern hospital facilities.
-          </motion.p>
-          <motion.div 
-            className="flex gap-4 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            <Button size="lg" className="bg-white text-[#713D87] hover:bg-white/90 font-semibold" asChild>
-              <Link href="#ecosystem">Explore Ecosystem</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-[#C9A8DD] text-[#C9A8DD] hover:bg-[#C9A8DD]/10" asChild>
-              <Link href="/departments">View Departments</Link>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+      {/* ── NEW HERO — Global Medical Supply Network Globe ── */}
+      <Hero />
 
       {/* Radical Interactive Ecosystem */}
       <section id="ecosystem" className="snap-start scroll-mt-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center py-12 relative overflow-hidden bg-transparent">
@@ -127,11 +79,11 @@ export default function HomeContent() {
             transition={{ duration: 0.5 }}
           >
             <div>
-              <h2 className="text-3xl font-bold text-[#211428] mb-2">Featured <span className="text-[#713D87]">Solutions</span></h2>
-              <p className="text-[#6B5876]">Industry-leading equipment across all departments.</p>
+              <h2 className="text-3xl font-bold text-[#211428] mb-2">Featured <span className="text-[#713D87]">CSSD Solutions</span></h2>
+              <p className="text-[#6B5876]">Industry-leading consumables for the decontamination workflow.</p>
             </div>
             <Button variant="outline" className="border-[#713D87] text-[#713D87] hover:bg-[#713D87]/5" asChild>
-              <Link href="/departments">View All</Link>
+              <Link href="/products">View Catalog</Link>
             </Button>
           </motion.div>
 
@@ -145,24 +97,18 @@ export default function HomeContent() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card className="glass-card h-full group overflow-hidden transition-all duration-300 hover:border-[#C9A8DD]">
-                  <div className="relative h-48 bg-muted w-full overflow-hidden">
-                    <Image 
-                      src={product.image} 
-                      alt={product.name} 
-                      fill 
-                      sizes="(max-width: 768px) 100vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                  <div className="relative h-48 bg-secondary/50 w-full flex items-center justify-center">
+                    <ShieldCheck className="w-16 h-16 text-primary/30" />
                   </div>
                   <CardContent className="p-5 flex flex-col justify-between h-[calc(100%-12rem)]">
                     <div>
                       <span className="text-xs font-semibold text-accent uppercase tracking-wider mb-2 block">
-                        {inventory.departments.find(d => d.id === product.departmentId)?.name}
+                        {product.category}
                       </span>
-                      <h3 className="font-semibold text-lg mb-2 line-clamp-2">{product.name}</h3>
+                      <h3 className="font-semibold text-lg mb-2 line-clamp-2">{product.title}</h3>
                     </div>
                     <Button variant="ghost" className="w-full mt-4 justify-between group-hover:text-accent" asChild>
-                      <Link href={`/products/${product.slug}`}>
+                      <Link href={`/products/${product.sku}`}>
                         View Details <span>→</span>
                       </Link>
                     </Button>
